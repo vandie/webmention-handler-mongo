@@ -3,7 +3,7 @@ import { Collection, Db, MongoClient, type Filter, type WithId } from 'mongodb';
 import { MongoDbPending } from './types/mongo-db-pending.type';
 import { MongoWebmentionOptions } from './types/mongo-webmention-options.type';
 
-export class MongoWebMentionHandler implements IWebMentionStorage {
+export class MongoWebMentionStorage implements IWebMentionStorage {
   mongoClient: MongoClient;
   dbName: string;
   pendingCollection: string;

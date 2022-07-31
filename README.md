@@ -6,11 +6,11 @@ Install with npm
 npm install webmention-handler-mongodb --save
 ```
 ## Usage
-Create a new instance of MongoWebMentionHandler
+Create a new instance of MongoWebMentionStorage
 ```typescript
-import { MongoWebMentionHandler } from 'webmention-handler-mongodb';
+import { MongoWebMentionStorage } from 'webmention-handler-mongodb';
 
-const storage = new MongoWebMentionHandler({
+const storage = new MongoWebMentionStorage({
   databaseUri: 'your-mongo-db-database-uri-here',
   dbName: 'webmentions', // Your db name
   mentionCollection: 'mentions', // The collection you want to use for parsed mentions
