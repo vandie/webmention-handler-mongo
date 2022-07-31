@@ -8,5 +8,6 @@ export default {
     format: 'cjs',
     sourcemap: true
   },
-  plugins: [typescript()]
+  plugins: [typescript()],
+  external: ['mongodb']
 };
