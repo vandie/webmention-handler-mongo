@@ -1,6 +1,6 @@
 {
-  "name": "@webmention-handler/mongodb",
-  "version": "0.1.0",
+  "name": "webmention-handler-mongodb",
+  "version": "0.1.1",
   "description": "A Mongo DB Storage Handler for the Webmention Handler Project",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
