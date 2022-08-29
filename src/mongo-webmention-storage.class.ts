@@ -50,14 +50,16 @@ export class MongoWebMentionStorage implements IWebMentionStorage {
 
   async deleteMention(mention: SimpleMention): Promise<null> {
     const collection = this.fetchCollection<Mention>(this.mentionCollection);
-    await collection.deleteMany({ source: mention.source, target: mention.target });
+    await collection.deleteOne({ source: mention.source, target: mention.target });
     return null;
   }
 
   async storeMentionForPage(page: string, mention: Mention): Promise<WithId<Mention>> {
     const collection = this.fetchCollection<Mention>(this.mentionCollection);
-    const storedMention = await collection.insertOne(mention);
-    return {...mention, _id: storedMention.insertedId};
+    await collection.updateOne({target: mention.target, source: mention.source}, {$set: mention }, { upsert: true });
+    const storedMention = await collection.findOne<WithId<Mention>>({target: mention.target, source: mention.source});
+    if(!storedMention) throw new Error(`Could not find Mention after insertion, source ${mention.source} & target ${mention.target}`);
+    return storedMention;
   }
 
   async getMentionsForPage(page: string, type?: string): Promise<WithId<Mention>[]> {
